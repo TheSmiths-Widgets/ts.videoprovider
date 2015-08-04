@@ -1,0 +1,6 @@
+[submodule "ts.httprequest"]
+	path = lib/ts.httprequest
+	url = https://github.com/TheSmiths-Widgets/ts.httprequest
+[submodule "ts.cryptojs256"]
+	path = lib/ts.cryptojs256
+	url = https://github.com/TheSmiths-Widgets/ts.cryptojs256
