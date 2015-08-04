@@ -1,5 +1,5 @@
-var CryptoJS,
-    HTTPRequest;
+var CryptoJS = require('./lib/ts.cryptojs256/ts.cryptojs256.js');
+    HTTPRequest = require('./lib/ts.httprequest/ts.httprequest.js');
 
 const TAG = "[ VideoProvider ]";
 var _providers = { 'youtube': true };
@@ -89,10 +89,6 @@ function _getLimelightUrl(id, done) {
 function _configure(options) {
     options = options || {};
 
-    /* Get External Dependencies */
-    CryptoJS = options.CryptoJS;
-    HTTPRequest = options.HTTPRequest;
-
     /* Get credentials for any provider. Only Limelight so far */
     options.providers && options.providers.forEach(function (provider) {
         if (!provider.name) { throw (TAG + " Invalid provider configuration. Name is missing"); }
@@ -144,11 +140,9 @@ function _getVideoUrl(provider, id) {
 exports.getVideoUrl = _getVideoUrl;
 
 /**
- * Configure the module. i.e., inject dependencies and supply providers keys
+ * Configure the module. i.e., supply providers keys
  *
  * @params {Object} options 
- *    @params {Object} options.CryptoJS An implementation of CryptoJS with SHA256 algs
- *    @params {Object} options.HTTPRequest An implementation of the HTTPRequest module
  *    @params {Array} options.providers A list of providers configuration. 
  *       @params {Object} options.providers.provider Abstract representation of a provider
  *          @params {String} options.providers.provider.name The provider name
