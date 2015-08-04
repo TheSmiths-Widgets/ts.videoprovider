@@ -1,0 +1,16 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+description: ts.videoprovider
+author: The Smiths [Matthias Benkort]
+license: Apache
+copyright: Copyright (c) 2015 by The Smiths
+
+# these should not be edited
+name: ts.videoprovider
+moduleid: ts.videoprovider
+guid: e852a72f-a0af-4291-aef1-fadb98d04a51 
+platform: commonjs
+minsdk: 3.5.1.GA
