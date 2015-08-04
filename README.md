@@ -1,6 +1,6 @@
 # VideoProvider [![Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://www.appcelerator.com/titanium/) [![Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://www.appcelerator.com/alloy/) [![License](http://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://choosealicense.com/licenses/apache-2.0/)
 
-This module for the [Appcelerator](http://www.appcelerator.com) Titanium Alloy MVC could be use to
+This module for the [Appcelerator](http://www.appcelerator.com) Titanium Alloy MVC framework could be used to
 easily retrieve streamable url (via http) from a given provider. So far, only *Youtube* and
 *Limelight* are supported. Also, some *Youtube*'s videos are protected via copyright and won't be
 displayed.
