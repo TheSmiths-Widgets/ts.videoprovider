@@ -1,5 +1,5 @@
-var CryptoJS = require('./lib/ts.cryptojs256/ts.cryptojs256.js');
-    HTTPRequest = require('./lib/ts.httprequest/ts.httprequest.js');
+var CryptoJS = require('ts.cryptojs256/ts.cryptojs256.js');
+    HTTPRequest = require('ts.httprequest/ts.httprequest.js');
 
 const TAG = "[ VideoProvider ]";
 var _providers = { 'youtube': true };
@@ -24,14 +24,14 @@ function _getYoutubeUrl(id, done) {
     })).send();
 
     function handleYoutubeResponse(response) {
-        var videos = _decodeYoutubeResponse(response); 
+        var videos = _decodeYoutubeResponse(response);
         if (videos.length === 0) { return done(" Unable to parse youtube video info", null); }
 
         /* Try to retrieve a good enough video, i.e. medium quality and not 3gpp */
         videos = videos.filter(function (v) { return ["video/webm", "video/x-flv"].indexOf(v.type) === -1; });
         videos.sort(function sortVideos(v, w) {
             var scores = { 0: 0, 1: 0 }; /* v = 0, w = 1 */
-            
+
             [v, w].forEach(function (video, index) {
                 (video.quality !== "medium") && (scores[index]  += 25);
                 (video.quality === "small") && (scores[index] += 50);
@@ -58,7 +58,7 @@ function _getLimelightUrl(id, done) {
           BASE_URL = "api.videoplatform.limelight.com",
           CONF = _providers.limelight,
           PATH = '/rest/organizations/' + CONF.organizationId + '/media/' + id + '/encodings.json';
-    
+
     var params = ['access_key=' + CONF.accessKey, 'expires=' + EXPIRES];
     params.push('signature=' + encodeURIComponent(CryptoJS.enc.Base64.stringify(
         CryptoJS.HmacSHA256(['get', BASE_URL, PATH, params.join('&')].join('|'), CONF.secretKey))));
@@ -74,8 +74,8 @@ function _getLimelightUrl(id, done) {
     function handleLimelightResponse(response) {
         if (!response.encodings) { return done(" Invalid response from Limelight server", null); }
 
-        var url = response.encodings.filter(function(e) { 
-            return e.primary_use === "MobileH264"; 
+        var url = response.encodings.filter(function(e) {
+            return e.primary_use === "MobileH264";
         })[0];
 
         if (!url) { return done(" No Limelight video found", null); }
@@ -142,11 +142,11 @@ exports.getVideoUrl = _getVideoUrl;
 /**
  * Configure the module. i.e., supply providers keys
  *
- * @params {Object} options 
- *    @params {Array} options.providers A list of providers configuration. 
+ * @params {Object} options
+ *    @params {Array} options.providers A list of providers configuration.
  *       @params {Object} options.providers.provider Abstract representation of a provider
  *          @params {String} options.providers.provider.name The provider name
- *          
+ *
  *          [limelight]
  *          @params {String} options.providers.provider.secretKey
  *          @params {String} options.providers.provider.accessKey

@@ -1,0 +1,45 @@
+{
+  "name": "ts.videoprovider",
+  "version": "1.0.1",
+  "description": "This module for the Appcelerator Titanium Alloy MVC framework could be used to easily retrieve streamable url (via http) from a given provider.",
+  "main": "ts.videoprovider.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:browserify": "browserify -s $npm_package_name *.js -o dist/$npm_package_name.js",
+    "build:uglify": "uglify -s dist/*.js -o dist/$npm_package_name.js",
+    "build:timodule": "echo '<?xml version=\"1.0\" encoding=\"UTF-8\"?><ti:module xmlns:ti=\"http://ti.appcelerator.org\" xmlns:android=\"http://schemas.android.com/apk/res/android\"></ti:module>' > dist/timodule.xml",
+    "build:manifest": "cp manifest dist/manifest",
+    "dist:prepare": "mkdir -p modules/commonjs/$npm_package_name",
+    "dist:move": "mv dist modules/commonjs/$npm_package_name/$npm_package_version",
+    "dist:zip": "zip -r $npm_package_name-commonjs-$npm_package_version.zip modules",
+    "prebuild": "mkdir -p dist",
+    "build": "npm run build:browserify && npm run build:uglify && npm run build:timodule && npm run build:manifest",
+    "postbuild": "npm run dist:prepare && npm run dist:move && npm run dist:zip && rm -r modules"
+  },
+  "devDependencies": {
+    "uglify": "^0.1.15",
+    "browserify": "^11.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSmiths-Widgets/ts.videoprovider.git"
+  },
+  "keywords": [
+    "Titanium",
+    "Appcelerator",
+    "Streaming",
+    "Video",
+    "Youtube",
+    "Limelight"
+  ],
+  "author": "The Smiths [Matthias Benkort]",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TheSmiths-Widgets/ts.videoprovider/issues"
+  },
+  "homepage": "https://github.com/TheSmiths-Widgets/ts.videoprovider#readme",
+  "dependencies": {
+    "ts.cryptojs256": "^1.0.1",
+    "ts.httprequest": "^1.3.2"
+  }
+}
